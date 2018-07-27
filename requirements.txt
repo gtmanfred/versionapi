@@ -1,0 +1,7 @@
+GitPython
+flask
+flask-restful
+git+git://github.com/gtmanfred/version-check@master#egg=version_check
+celery[librabbitmq]
+sqlalchemy
+psycopg2
