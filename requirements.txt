@@ -5,3 +5,4 @@ git+git://github.com/gtmanfred/version-check@master#egg=version_check
 celery[librabbitmq]
 sqlalchemy
 psycopg2
+PyYaml
