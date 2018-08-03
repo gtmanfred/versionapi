@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import versionapi.celery
+import versionapi.celeryapp
 import versionapi.tasks.lookup
 
 class Tasks(object):
@@ -35,7 +35,7 @@ class Tasks(object):
     uri = '/tasks/<string:taskid>'
 
     def get(self, taskid):
-        result = versionapi.celery.tasks.AsyncResult(taskid)
+        result = versionapi.celeryapp.tasks.AsyncResult(taskid)
         if result.status == 'PENDING':
             response = __flask__.jsonify({'result': {}})
             response.status_code = 404

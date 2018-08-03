@@ -2,7 +2,7 @@
 import git
 import shutil
 
-from versionapi.celery import tasks
+from versionapi.celeryapp import tasks
 
 import version_check.config
 import version_check.core

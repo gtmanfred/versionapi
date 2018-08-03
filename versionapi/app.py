@@ -75,7 +75,7 @@ def setup_app():
                 modfile = f'{entry.path}/app.py'
                 if not os.path.isfile(modfile):
                     continue
-                modname = f'triagesched.{os.path.basename(entry.path)}.app'
+                modname = f'versionapi.{os.path.basename(entry.path)}.app'
                 app.register_blueprint(create_blueprint_app(_load_module(modname, modfile)))
     return app
 

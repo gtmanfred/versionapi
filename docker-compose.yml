@@ -4,21 +4,34 @@ services:
     build:
       context: .
     command:
-      - celery
-      - -A
-      - versionapi.celery
-      - worker
-      - -l
-      - debug
+    - celery
+    - -A
+    - versionapi.celery
+    - worker
+    - -l
+    - debug
     networks:
-      - salt
+    - salt
+  api:
+    build:
+      context: .
+    command:
+    - python
+    - -m
+    - versionapi.app
+    environment:
+      FLASK_DEBUG: 1
+    ports:
+    - "8200:8200"
+    networks:
+    - salt
   rabbitmq:
     image: rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: daniel
       RABBITMQ_DEFAULT_PASS: braves123
     networks:
-      - salt
+    - salt
   postgres:
     image: postgres 
     environment:
@@ -26,6 +39,6 @@ services:
       POSTGRES_PASSWORD: braves123
       POSTGRES_DB: version
     networks:
-      - salt
+    - salt
 networks:
   salt:
