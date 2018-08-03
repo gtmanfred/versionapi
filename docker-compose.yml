@@ -1,0 +1,31 @@
+version: '2'
+services:
+  celery:
+    build:
+      context: .
+    command:
+      - celery
+      - -A
+      - versionapi.celery
+      - worker
+      - -l
+      - debug
+    networks:
+      - salt
+  rabbitmq:
+    image: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: daniel
+      RABBITMQ_DEFAULT_PASS: braves123
+    networks:
+      - salt
+  postgres:
+    image: postgres 
+    environment:
+      POSTGRES_USER: daniel
+      POSTGRES_PASSWORD: braves123
+      POSTGRES_DB: version
+    networks:
+      - salt
+networks:
+  salt:
