@@ -30,7 +30,7 @@ class Tasks(object):
             response.status_code = 200
         return response
 
-class Tasks(object):
+class Task(object):
 
     uri = '/tasks/<string:taskid>'
 
@@ -44,4 +44,6 @@ class Tasks(object):
             response.status_code = 202
         else:
             response = __flask__.jsonify({'result': result.get()})
+            if 'fatal: Couldn\'t find remote ref pull/' in response.json['result']:
+                response.status_code = 404
         return response

@@ -6,7 +6,7 @@ services:
     command:
     - celery
     - -A
-    - versionapi.celery
+    - versionapi.celeryapp
     - worker
     - -l
     - debug
@@ -22,7 +22,7 @@ services:
     environment:
       FLASK_DEBUG: 1
     ports:
-    - "8200:8200"
+    - "5000:5000"
     networks:
     - salt
   rabbitmq:

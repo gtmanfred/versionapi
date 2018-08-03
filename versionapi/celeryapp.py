@@ -9,6 +9,7 @@ tasks = celery.Celery(
     'tasks',
     backend='db+postgresql://daniel:braves123@postgres/version',
     broker='pyamqp://daniel:braves123@rabbitmq//',
+    task_track_started=True,
 )
 tasks.conf.update(versionapi.config.get_config())
 
