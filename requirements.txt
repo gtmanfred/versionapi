@@ -6,3 +6,4 @@ celery[librabbitmq]
 sqlalchemy
 psycopg2
 PyYaml
+requests

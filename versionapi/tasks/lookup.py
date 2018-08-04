@@ -15,4 +15,5 @@ def search(self, repository='saltstack/salt', pr_num=None, commit_id=None):
     version_check.config.GIT_DIR = f'--git-dir={path}/.git'
     ret = version_check.core.search(pr_num=pr_num, commit=commit_id)
     shutil.rmtree(path)
+    ret['repo'] = repository
     return ret
