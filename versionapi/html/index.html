@@ -1,28 +1,35 @@
 <!DOCTYPE HTML PUBLIC>
 <html>
   <head>
-    <title>Who is doing triage today?</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What release will this be in?</title>
+    <link rel="shortcut icon" href="https://saltstack.com/wp-content/uploads/2018/05/S_B_.png" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <link rel="stylesheet" href="main.css"> 
   </head>
   <body bgcolor="#FFFFFF">
-    <main id="app">
-      <form v-on:submit="submitJob">
-        <label for="repository">Name</label>
+    <main id="app" class="jobs">
+      <h1 class="jobs-title">What release will this be in?</h1>
+      <form class="jobs-form" v-on:submit="submitJob">
+        <!--
+        <label for="repository">Repository</label>
         <input id="repository" type="text" placeholder="saltstack/salt" ref="repo"/><br>
-        <label for="pr_num">Name</label>
+        -->
+        <label for="pr_num">PR Number</label>
         <input id="pr_num" type="text" placeholder="PR Number" ref="pr_num"/><br>
-        <label for="commit_id">Name</label>
+        <label for="commit_id">Commit Id</label>
         <input id="commit_id" type="text" placeholder="Commit Id" ref="commit_id"/><br>
-        <button>Submit</button>
+        <button class="button">Submit</button>
       </form>
-      <section v-for="job in jobs">
-        <article v-if="job['result']">
-          {{job['result']}}
-        </article>
-        <article v-if="!job['result']">
-          Waiting...
-        </article>
+      <section class="jobs-section">
+        <div class="jobs__list">
+          <article v-bind:class="{job: true, job__waiting: !job.ready, job__error: job.error}" v-for="job in jobs">
+            <p v-if="!job['result']">Waiting...</p>
+            <p v-if="job['result']">{{job['result']}}</p>
+          </article>
         </div>
       </section>
     </main>

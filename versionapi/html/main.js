@@ -12,7 +12,10 @@ new Vue({
       }
       event.preventDefault();
       this.$http.post("http://localhost:5000/api/v1/tasks", job).then(function(response) {
-        this.jobs.push(response.data);
+        let job = response.data;
+        job.ready = false;
+        job.error = false;
+        this.jobs.push(job);
         event.target.reset();
       });
     },
@@ -24,6 +27,10 @@ new Vue({
           this.$http.get(`http://localhost:5000/api/v1/tasks/${job.jid}`).then(function(response) {
             if (response.status == 200) {
               job['result'] = response.data.result;
+              job.ready = true;
+              if (job.result.error) {
+                job.error = true;
+              }
             };
           });
         };
