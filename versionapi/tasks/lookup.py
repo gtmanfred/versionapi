@@ -3,7 +3,6 @@ import filelock
 import git
 import os
 import pathlib
-import shutil
 
 from versionapi.celeryapp import tasks
 

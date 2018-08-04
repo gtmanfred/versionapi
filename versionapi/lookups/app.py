@@ -2,6 +2,7 @@
 import versionapi.celeryapp
 import versionapi.tasks.lookup
 
+
 class Tasks(object):
 
     uri = '/tasks'
@@ -29,6 +30,7 @@ class Tasks(object):
             response = __flask__.jsonify({'jid': result.id})
             response.status_code = 200
         return response
+
 
 class Task(object):
 
