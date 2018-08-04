@@ -19,6 +19,8 @@ services:
     - python
     - -m
     - versionapi.app
+    volumes:
+    - /Users/daniel/github/versionapi:/versionapi
     environment:
       FLASK_DEBUG: 1
     ports:

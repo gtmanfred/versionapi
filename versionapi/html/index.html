@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC>
+<html>
+  <head>
+    <title>Who is doing triage today?</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+  </head>
+  <body bgcolor="#FFFFFF">
+    <main id="app">
+      <form v-on:submit="submitJob">
+        <label for="repository">Name</label>
+        <input id="repository" type="text" placeholder="saltstack/salt" ref="repo"/><br>
+        <label for="pr_num">Name</label>
+        <input id="pr_num" type="text" placeholder="PR Number" ref="pr_num"/><br>
+        <label for="commit_id">Name</label>
+        <input id="commit_id" type="text" placeholder="Commit Id" ref="commit_id"/><br>
+        <button>Submit</button>
+      </form>
+      <section v-for="job in jobs">
+        <article v-if="job['result']">
+          {{job['result']}}
+        </article>
+        <article v-if="!job['result']">
+          Waiting...
+        </article>
+        </div>
+      </section>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
