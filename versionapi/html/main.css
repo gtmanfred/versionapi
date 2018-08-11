@@ -113,6 +113,21 @@ body {
 
 }
 
+.job-rev a,
+.job-release a {
+  text-decoration: none;
+  color: #0e4f1f;
+  font-weight: bold;
+  padding: 0.2rem 0;
+}
+
+.job-rev a:hover,
+.job-rev a:active,
+.job-release a:hover,
+.job-release a:active {
+  border-bottom: 5px solid white;
+}
+
 @media (min-width: 40rem) {
   .job__list {
     width: 100%;

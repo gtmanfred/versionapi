@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What release will this be in?</title>
+    <title>What release should this be in?</title>
     <link rel="shortcut icon" href="https://saltstack.com/wp-content/uploads/2018/05/S_B_.png" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
@@ -12,7 +12,7 @@
   </head>
   <body bgcolor="#FFFFFF">
     <main id="app" class="jobs">
-      <h1 class="jobs-title">What release will this be in?</h1>
+      <h1 class="jobs-title">What release should this be in?</h1>
       <form class="jobs-form" v-on:submit="submitJob">
         <!--
         <label for="repository">Repository</label>
@@ -26,9 +26,20 @@
       </form>
       <section class="jobs-section">
         <div class="jobs__list">
-          <article v-bind:class="{job: true, job__waiting: !job.ready, job__error: job.error}" v-for="job in jobs">
-            <p v-if="!job['result']">Waiting...</p>
-            <p v-if="job['result']">{{job['result']}}</p>
+          <article v-bind:class="{job: true, job__waiting: !isReady(job), job__error: job.error}" v-for="job in jobs">
+            <div v-if="isReady(job)">
+              <h1 class="job-rev">
+                <a v-bind:href="getUrl(job)">{{job['result']['rev']}}</a>
+              </h1>
+              <h2 class="job-release">
+                <a v-bind:href="getReleaseNotes(job)">{{job['release']}}</a>
+              </h2>
+            </div>
+            <div v-else-if="job.error">
+              <h1 class="job-rev">{{job['result']['rev']}}</h1>
+              <h2>{{job.result.error}}</h2>
+            </div>
+            <p v-else>Waiting...</p>
           </article>
         </div>
       </section>
