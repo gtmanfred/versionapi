@@ -14,14 +14,6 @@ with os.scandir('versionapi') as rit:
                 and os.path.isfile(f'{entry.path}/__init__.py'):
             packages.append(f'{entry.path.replace("/", ".")}')
 
-requires = []
-with open('requirements.txt') as reqfile:
-    for require in reqfile.readlines():
-        if require.startswith('git+git://'):
-            requires.append(require.strip().rpartition('#egg=')[-1])
-        else:
-            requires.append(require)
-
 
 class VersionInstallData(install_data):
     def run(self):
@@ -54,7 +46,6 @@ setup(
     url='https://github.com/gtmanfred/versionapi',
     packages=packages,
     include_package_data=True,
-    install_requires=requires,
     data_files=[
         ('share/nginx/html/', [f'versionapi/html/{webfile}' for webfile in ['index.html', 'main.js', 'main.css']]),
     ],
