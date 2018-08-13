@@ -11,7 +11,7 @@ new Vue({
         "commit_id": this.$refs.commit_id.value
       }
       event.preventDefault();
-      this.$http.post("http://localhost:5000/api/v1/tasks", job).then(function(response) {
+      this.$http.post("http://localhost/api/v1/tasks", job).then(function(response) {
         let job = response.data;
         job.ready = false;
         job.error = false;
@@ -40,7 +40,7 @@ new Vue({
       while (this.jobs.length) {
         let job = this.jobs.pop()
         if (!job.result) {
-          this.$http.get(`http://localhost:5000/api/v1/tasks/${job.jid}`).then(function(response) {
+          this.$http.get(`http://localhost/api/v1/tasks/${job.jid}`).then(function(response) {
             if (response.status == 200) {
               job['result'] = response.data.result;
               job.ready = true;
@@ -48,7 +48,7 @@ new Vue({
                 job.release = job.result.tags[0];
               };
               if (job.release === undefined && job.result.branches) {
-                this.$http.get(`http://localhost:5000/api/v1/nextrelease/${job.result.repo}/${job.result.branches[0]}`).then(function(response){
+                this.$http.get(`http://localhost/api/v1/nextrelease/${job.result.repo}/${job.result.branches[0]}`).then(function(response){
                   job.release = `v${response.data.next}`;
                 });
               };

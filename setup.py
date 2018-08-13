@@ -22,7 +22,7 @@ class VersionInstallData(install_data):
             with open(pkgfile, 'r') as tmpfile:
                 filedata = tmpfile.read()
             filedata = filedata.replace(
-                'localhost:5000',
+                'localhost',
                 'versions.gtmanfred.com'
             )
             with open(pkgfile, 'w') as tmpfile:

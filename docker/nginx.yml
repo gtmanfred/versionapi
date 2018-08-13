@@ -1,0 +1,7 @@
+FROM nginx:stable-alpine
+
+RUN apk add -U python3 git && \
+    python3 -m ensurepip && \
+    pip3 install git+git://github.com/gtmanfred/versionapi.git@master#egg=versionapi
+
+ADD docker/nginx.conf /etc/nginx/conf.d/version.conf

@@ -1,21 +1,29 @@
 version: '2'
 services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx.yml
+    ports:
+    - "80:80"
+    networks:
+    - salt
   celery:
     build:
       context: .
+      dockerfile: docker/app.yml
     command: celery -A versionapi.celeryapp worker -l debug
     networks:
     - salt
   api:
     build:
       context: .
+      dockerfile: docker/app.yml
     command: python -m versionapi.app
     volumes:
     - /Users/daniel/github/versionapi:/versionapi
     environment:
       FLASK_DEBUG: 1
-    ports:
-    - "5000:5000"
     networks:
     - salt
   rabbitmq:
