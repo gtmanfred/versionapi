@@ -5,11 +5,7 @@ import os
 
 import versionapi.config
 
-tasks = celery.Celery(
-    'tasks',
-    backend='db+postgresql://daniel:braves123@postgres/version',
-    broker='pyamqp://daniel:braves123@rabbitmq//',
-)
+tasks = celery.Celery('tasks')
 tasks.conf.update(versionapi.config.get_config())
 
 

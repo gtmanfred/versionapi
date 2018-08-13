@@ -4,7 +4,8 @@ import yaml
 
 
 def get_config():
-    if os.path.isfile('config.yml'):
-        with open('config.yml') as configfile:
-            return yaml.load(configfile)
-    return {}
+    return {
+        'CELERY_TRACK_STARTED': True,
+        'BROKER_URL': os.environ.get('BROKER', 'pyamqp://daniel:braves123@rabbitmq//'),
+        'CELERY_RESULT_BACKEND': os.environ.get('BACKEND', 'db+postgresql://daniel:braves123@postgres/version'),
+    }

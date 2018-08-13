@@ -3,22 +3,13 @@ services:
   celery:
     build:
       context: .
-    command:
-    - celery
-    - -A
-    - versionapi.celeryapp
-    - worker
-    - -l
-    - debug
+    command: celery -A versionapi.celeryapp worker -l debug
     networks:
     - salt
   api:
     build:
       context: .
-    command:
-    - python
-    - -m
-    - versionapi.app
+    command: python -m versionapi.app
     volumes:
     - /Users/daniel/github/versionapi:/versionapi
     environment:

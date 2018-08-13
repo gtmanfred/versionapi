@@ -29,10 +29,10 @@
           <article v-bind:class="{job: true, job__waiting: !isReady(job), job__error: job.error}" v-for="job in jobs">
             <div v-if="isReady(job)">
               <h1 class="job-rev">
-                <a v-bind:href="getUrl(job)">{{job['result']['rev']}}</a>
+                <a v-bind:href="getUrl(job)" target="_blank">{{job['result']['rev']}}</a>
               </h1>
               <h2 class="job-release">
-                <a v-bind:href="getReleaseNotes(job)">{{job['release']}}</a>
+                <a v-bind:href="getReleaseNotes(job)" target="_blank">{{job['release']}}</a>
               </h2>
             </div>
             <div v-else-if="job.error">
