@@ -1,0 +1,49 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: broker
+  labels:
+    app: rabbitmq
+spec:
+  selector:
+    matchLabels:
+      app: rabbitmq
+      tier: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+        tier: backend
+    spec:
+      containers:
+      - name: rabbitmq
+        image: docker.io/rabbitmq
+        ports:
+        - containerPort: 5672
+        env:
+        - name: RABBITMQ_DEFAULT_PASS
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq
+              key: password
+        - name: RABBITMQ_DEFAULT_USER
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq
+              key: user
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: broker
+  labels:
+    app: rabbitmq
+    tier: backend
+spec:
+  ports:
+  - port: 5672
+    targetPort: 5672
+  selector:
+    app: rabbitmq
+    tier: backend

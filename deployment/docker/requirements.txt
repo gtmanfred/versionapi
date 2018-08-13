@@ -1,0 +1,10 @@
+GitPython
+filelock
+flask
+flask-restful
+git+git://github.com/rallytime/version-check@master#egg=version_check
+celery[librabbitmq]
+sqlalchemy
+psycopg2-binary
+PyYaml
+requests
