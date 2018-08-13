@@ -18,6 +18,8 @@ with os.scandir('versionapi') as rit:
 class VersionInstallData(install_data):
     def run(self):
         install_data.run(self)
+        if os.environ.get('DEVEL', False):
+            return
         for pkgfile in self.outfiles:
             with open(pkgfile, 'r') as tmpfile:
                 filedata = tmpfile.read()
