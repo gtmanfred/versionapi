@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: docker.io/gtmanfred/nginx:versionapi
+        image: docker.io/gtmanfred/nginx-versionapi:0.2.1
         ports:
         - containerPort: 80
           name: nginx
