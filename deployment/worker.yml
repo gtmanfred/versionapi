@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: celery
-        image: docker.io/gtmanfred/versionapi:latest
+        image: docker.io/gtmanfred/versionapi:0.2.1
         command:
         - celery
         args: ['-A', 'versionapi.celeryapp', 'worker', '-l', 'debug']

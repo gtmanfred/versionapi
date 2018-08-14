@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: docker.io/gtmanfred/versionapi:latest
+        image: docker.io/gtmanfred/versionapi:0.2.1
         command:
         - python
         args: ['-m', 'versionapi.app']
