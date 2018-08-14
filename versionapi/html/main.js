@@ -44,8 +44,11 @@ new Vue({
             if (response.status == 200) {
               job['result'] = response.data.result;
               job.ready = true;
-              if (job.result.tags && job.result.tags[0].split('.') === 3) {
-                job.release = job.result.tags[0];
+              if (job.result.tags) {
+		let jobtag = job.result.tags[0];
+		if (jobtag.startsWith('v0.') || jobtag.split('.') === 3) {
+                  job.release = job.result.tags[0];
+		};
               };
               if (job.release === undefined && job.result.branches) {
                 this.$http.get(`http://localhost/api/v1/nextrelease/${job.result.repo}/${job.result.branches[0]}`).then(function(response){
