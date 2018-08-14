@@ -25,6 +25,8 @@ def search(self, repository='saltstack/salt', pr_num=None, commit_id=None):
                 git.Repo.clone_from(f'git://github.com/{repository}.git', to_path=path)
         version_check.config.GIT_DIR = f'--git-dir={path}/.git'
         ret.update(version_check.core.search(pr_num=pr_num, commit=commit_id))
+        if commit_id:
+            ret['rev'] = commit_id
         return ret
     except TimeoutError:
         self.retry(countdown=5)

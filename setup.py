@@ -39,7 +39,7 @@ class VersionDist(distutils.dist.Distribution):
 setup(
     distclass=VersionDist,
     name='versionapi',
-    version='0.2.0',
+    version='0.2.1',
     description='Version Checker API',
     author='Daniel Wallace',
     author_email='daniel@gtmanfred.com',

@@ -27,7 +27,7 @@ new Vue({
         };
     },
     getReleaseNotes: function(job) {
-      return `https://docs.saltstack.com/en/latest/topics/releases/${job.release.replace('v', '')}.html`;
+      return `https://docs.saltstack.com/en/develop/topics/releases/${job.release.replace('v', '').toLowerCase()}.html`;
     },
     isReady: function(job) {
       if (job.result && job.release) {
@@ -44,7 +44,7 @@ new Vue({
             if (response.status == 200) {
               job['result'] = response.data.result;
               job.ready = true;
-              if (job.result.tags) {
+              if (job.result.tags && job.result.tags[0].split('.') === 3) {
                 job.release = job.result.tags[0];
               };
               if (job.release === undefined && job.result.branches) {
