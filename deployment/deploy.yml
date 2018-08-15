@@ -91,7 +91,7 @@ spec:
     spec:
       containers:
       - name: celery
-        image: docker.io/gtmanfred/versionapi:0.2.2
+        image: docker.io/gtmanfred/versionapi:0.2.3
         command:
         - celery
         args: ['-A', 'versionapi.celeryapp', 'worker', '-l', 'debug']
@@ -137,7 +137,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: docker.io/gtmanfred/versionapi:0.2.2
+        image: docker.io/gtmanfred/versionapi:0.2.3
         command:
         - python
         args: ['-m', 'versionapi.app']
@@ -186,7 +186,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: docker.io/gtmanfred/nginx-versionapi:0.2.2
+        image: docker.io/gtmanfred/nginx-versionapi:0.2.3
         ports:
         - containerPort: 80
           name: nginx

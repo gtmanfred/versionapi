@@ -5,4 +5,4 @@ ADD nginx.conf /etc/nginx/conf.d/version.conf
 RUN apk add -U python3 git && \
     rm -f /etc/nginx/conf.d/default.conf && \
     python3 -m ensurepip && \
-    pip3 install git+git://github.com/gtmanfred/versionapi@v0.2.2#egg=versionapi
+    pip3 install git+git://github.com/gtmanfred/versionapi@v0.2.3#egg=versionapi
